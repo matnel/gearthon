@@ -1,7 +1,7 @@
 window.onload = function() {
 	
 	$('body').on('click', function() {
-		character('images/grumpy.png', 'I need to sleep more to be less grumpy!');
+		character('images/grumpy.png', "<button class='btn'>Let's go joking</button>");
 	} );
 	
 	
@@ -25,6 +25,11 @@ function character( img, text ) {
 	// container for the avatar
 	var div = $('<div>', { 'class': 'sam' });
 	
+	var hearts = $('<span>I love you too!</span>');
+	hearts.hide();
+	div.append( hearts );
+	div.append( '<br/>' );
+	
 	// content
 	var i = $('<img>', { src: img, height: 175 } );
 	div.append( i );
@@ -33,7 +38,12 @@ function character( img, text ) {
 		
 		var span = $('<span>', { html: text } );
 		span.css('background', 'black');
-		span.css('padding', 3 );
+		span.css('padding', 7 );
+		
+		
+		span.click( function( e ) {			
+			e.stopPropagation();
+		} );
 		
 		
 		div.append( '<br/>' );
@@ -45,7 +55,12 @@ function character( img, text ) {
 	div.hide();
 	$('body').prepend( div );
 	
-	div.on('click', function( e ) {
+	div.on('touchstart', function( e ) {
+		
+	});
+	
+	div.on('touchend', function( e ) {
+		hearts.show();
 		e.stopPropagation();
 	});
 	
