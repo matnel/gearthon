@@ -4,6 +4,20 @@ window.onload = function() {
 		character('images/grumpy.png', 'I need to sleep more to be less grumpy!');
 	} );
 	
+	
+	window.ondevicemotion = function( data ) {
+		var sum = 0;
+		sum += Math.abs( data.acceleration.x );
+		sum += Math.abs( data.acceleration.y );
+		sum += Math.abs( data.acceleration.z );
+		
+		
+		if( sum > 15 ) {
+			$('.sam').hide( function() {
+				$(this).remove();
+			});
+		}
+	}
 }
 
 function character( img, text ) {
@@ -15,7 +29,7 @@ function character( img, text ) {
 	// animate first movein
 	setTimeout( function() {
 		
-		var div = $('<div>');
+		var div = $('<div>', { 'class': 'sam' });
 		
 		// content
 		var i = $('<img>', { src: img, height: 175 } );
