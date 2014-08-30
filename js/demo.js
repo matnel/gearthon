@@ -45,9 +45,12 @@ function character( img, text ) {
 	div.hide();
 	$('body').prepend( div );
 	
-	
-	// hide the element after click
 	div.on('click', function( e ) {
+		e.stopPropagation();
+	});
+	
+	// hide the element after dblclick
+	div.on('dblclick', function( e ) {
 		
 		div.hide('slide', 'fast', function() {
 			div.remove();
