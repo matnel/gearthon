@@ -1,14 +1,10 @@
-alert("loding main");
-
-var i = 100;
+var health = 100;
 
 var update = function () {
 	
 	// update the header bar
+		
 	
-	i -= 5;
-	
-	$('#header').width( i + '%');
 	
 	
 	// check for avatar color
