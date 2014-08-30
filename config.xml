@@ -3,7 +3,9 @@
     <tizen:application id="JAkzPobcAn.newprj" package="JAkzPobcAn" required_version="2.2"/>
     <content src="index.html"/>
     <feature name="http://tizen.org/feature/screen.size.all"/>
+    <feature name="http://tizen.org/feature/sensor.magnetometer"/>
+    <feature name="http://tizen.org/feature/sensor.accelerometer"/>
+    <feature name="http://tizen.org/feature/sensor.gyroscope"/>
     <icon src="icon.png"/>
     <name>newprj</name>
-    <tizen:privilege name="http://developer.samsung.com/privilege/healthinfo"/>
 </widget>
