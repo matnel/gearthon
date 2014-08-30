@@ -5,4 +5,5 @@
     <feature name="http://tizen.org/feature/screen.size.all"/>
     <icon src="icon.png"/>
     <name>newprj</name>
+    <tizen:privilege name="http://developer.samsung.com/privilege/healthinfo"/>
 </widget>
