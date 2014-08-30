@@ -1,12 +1,12 @@
 window.onload = function() {
 	
 	$('body').on('click', function() {
-		moveIn('');
+		character('images/grumpy.png', 'I need to sleep more to be less grumpy!');
 	} );
 	
 }
 
-function moveIn( img ) {
+function character( img, text ) {
 	
 	// start movein with a few vibras
 	
@@ -14,17 +14,36 @@ function moveIn( img ) {
 	
 	// animate first movein
 	setTimeout( function() {
-		var i = $('<img>', { src: 'images/grumpy.png'} );
 		
-		i.hide();
+		var div = $('<div>');
 		
-		$('body').prepend( i );
+		// content
+		var i = $('<img>', { src: img, height: 175 } );
+		div.append( i );
 		
-		i.show('slide', 'slow');
+		if( text ) {
+			
+			var span = $('<span>', { html: text } );
+			span.css('background', 'black');
+			span.css('padding', 3 );
+			
+			
+			div.append( '<br/>' );
+			div.append( span );
 		
-		i.on('click', function( e) {
-			i.hide('slide', 'fast', function() {
-				i.remove();
+		};
+		
+		// show element
+		div.hide();
+		$('body').prepend( div );
+		div.show('slide', 'slow');
+		
+		
+		// hide the element after click
+		div.on('click', function( e ) {
+			
+			div.hide('slide', 'fast', function() {
+				div.remove();
 			});
 			
 			e.stopPropagation();
