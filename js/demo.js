@@ -1,7 +1,27 @@
 window.onload = function() {
 	
+	window.stage = 0;
+	
+	window.backgrounds = ['images/pedometer.png', 'images/background.png', 'images/grumpy.png'];
+	
 	$('body').on('click', function() {
-		character('images/grumpy.png', "<button class='btn'>Let's go joking</button>");
+		if( window.stage == 0 ) {
+			character('images/avatar_fat.gif', "Let's go jogging!");
+			return;
+		}
+		
+		if ( window.stage == 1 ) {
+			character('images/avatar_joy.gif', "You reached your step goal!");
+			return;
+		}
+		
+		if( window.stage == 2 ) {
+			character('images/avatar_default_sad.gif', "I need to sleep some more...");
+			return;	
+		}
+		
+		character('images/avatar_default_sad.gif', "The demo has ended");
+		stage--;
 	} );
 	
 	
@@ -20,7 +40,7 @@ window.onload = function() {
 	}
 }
 
-function character( img, text ) {
+function character(  img, text ) {
 	
 	// container for the avatar
 	var div = $('<div>', { 'class': 'sam' });
@@ -36,12 +56,18 @@ function character( img, text ) {
 	
 	if( text ) {
 		
-		var span = $('<span>', { html: text } );
-		span.css('background', 'black');
-		span.css('padding', 7 );
+		var span = $('<span>', { html: text, 'class': 'btn' } );
+		// span.css('background', 'black');
+		span.css('padding', 20 );
 		
 		
-		span.click( function( e ) {			
+		span.click( function( e ) {	
+			
+			div.hide();
+			
+			$('body').css('background', 'url("' + backgrounds[ stage++ ] + '")');
+			$('body').css('background-size', '100%');
+			
 			e.stopPropagation();
 		} );
 		
@@ -55,7 +81,11 @@ function character( img, text ) {
 	div.hide();
 	$('body').prepend( div );
 	
-	div.on('touchstart', function( e ) {
+	/*
+	 div.on('touchstart', function( e ) {
+		
+		// let's purr
+		navigator.vibrate([50, 75, 50]);
 		
 	});
 	
@@ -63,13 +93,12 @@ function character( img, text ) {
 		hearts.show();
 		e.stopPropagation();
 	});
+	*/
 	
 	// hide the element after dblclick
 	div.on('dblclick', function( e ) {
 		
-		div.hide('slide', 'fast', function() {
-			div.remove();
-		});
+		div.hide();
 		
 		e.stopPropagation();
 	});
@@ -78,7 +107,7 @@ function character( img, text ) {
 	
 	// start move in with a few vibras
 	
-	navigator.vibrate([50, 100, 50]);
+	navigator.vibrate([50, 75, 100]);
 	
 	setTimeout( function() {
 		div.show('slide', 'slow');
