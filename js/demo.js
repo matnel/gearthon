@@ -2,7 +2,7 @@ window.onload = function() {
 	
 	window.stage = 0;
 	
-	window.backgrounds = ['images/pedometer.png', 'images/background.png', 'images/grumpy.png'];
+	window.backgrounds = ['images/pedometer.png', 'images/pedometer.png', 'images/grumpy.png'];
 	
 	$('body').on('click', function() {
 		if( window.stage == 0 ) {
@@ -10,14 +10,14 @@ window.onload = function() {
 			return;
 		}
 		
-		if ( window.stage == 1 ) {
-			character('images/avatar_joy.gif', "You reached your step goal!");
-			return;
+		if( window.stage == 1 ) {
+			character('images/avatar_default_sad.gif', "Speed up my friend!");
+			return;	
 		}
 		
-		if( window.stage == 2 ) {
-			character('images/avatar_default_sad.gif', "I need to sleep some more...");
-			return;	
+		if ( window.stage == 2 ) {
+			character('images/avatar_joy.gif', "Goal reached");
+			return;
 		}
 		
 		character('images/avatar_default_sad.gif', "The demo has ended");
@@ -41,6 +41,8 @@ window.onload = function() {
 }
 
 function character(  img, text ) {
+	
+	$('.sam').remove();
 	
 	// container for the avatar
 	var div = $('<div>', { 'class': 'sam' });
