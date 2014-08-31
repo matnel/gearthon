@@ -2,7 +2,7 @@ window.onload = function() {
 	
 	window.stage = 0;
 	
-	window.backgrounds = ['images/pedometer.png', 'images/pedometer.png', 'images/grumpy.png'];
+	window.backgrounds = ['images/background.png', 'images/pedometer.png', 'images/pedometer.png', 'images/background.png', 'images/background.png', 'images/background.png'];
 	
 	$('body').on('click', function() {
 		if( window.stage == 0 ) {
@@ -21,7 +21,7 @@ window.onload = function() {
 		}
 		
 		character('images/avatar_default_sad.gif', "The demo has ended");
-		stage--;
+		stage = -1;
 	} );
 	
 	
@@ -67,7 +67,7 @@ function character(  img, text ) {
 			
 			div.hide();
 			
-			$('body').css('background', 'url("' + backgrounds[ stage++ ] + '")');
+			$('body').css('background', 'url("' + backgrounds[ ++stage ] + '")');
 			$('body').css('background-size', '100%');
 			
 			e.stopPropagation();
